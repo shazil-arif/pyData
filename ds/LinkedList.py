@@ -91,7 +91,7 @@ class LinkedList:
                 return self.throwEmptyWarning()
 
         else:
-            return self.throwEmptyWarning()
+            self.head = new_element
 
     '''
     @return int

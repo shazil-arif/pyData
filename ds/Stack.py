@@ -1,13 +1,13 @@
 from LinkedList import LinkedList
 class Stack:
     #stack implementation using a linked list
-    def __init__(self):
-        self.linkedlist = LinkedList(None)
-    def pop():
-        pass
+    def __init__(self,top=None):
+        self.items = LinkedList(top)
+    def pop(self):
+        return self.items.deleteFirst()
     
-    def push():
-        pass
+    def push(self,newElement):
+        self.items.insertFirst(newElement)
 
-    def peek():
-        pass
+    def peek(self):
+        return self.items.head

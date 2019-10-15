@@ -2,23 +2,35 @@ import sys
 sys.path.insert(1,'./ds')
 from LinkedList import LinkedList
 from Element import Element 
-
-elements = []
-for i in range(10):
-    e = Element(i+1)
-    elements.append(e)
+from Stack import Stack
 
 linkedlist = LinkedList()
-for i in elements:
-    linkedlist.append(i)
+stack = Stack()
 
-size = linkedlist.size()
-for i in range(size):
-    print(linkedlist.getElement(i).value)
+for i in range(10):
+    e = Element(i+1)
+    stack.push(e)
 
-linkedlist.reverse()
-for i in range(size):
-    print(linkedlist.getElement(i).value)
+for i in range(10):
+    print(stack.ll.getElement(i).value)
+
+stack.pop()
+print("-----")
+for i in range(10):
+    print(stack.ll.getElement(i).value)
+    
+
+
+
+# size = linkedlist.size()
+# for i in range(size):
+#     print(linkedlist.getElement(i).value)
+
+# linkedlist.reverse()
+# for i in range(size):
+#     print(linkedlist.getElement(i).value)
+
+
 
 
 
