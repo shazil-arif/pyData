@@ -1,4 +1,5 @@
-from ds.Node import Node
+from .Node import Node
+import sys
 class BinarySearchTree:
     '''
     @param root
@@ -14,7 +15,33 @@ class BinarySearchTree:
         (required) - the value to insert into the binary search tree
     '''
     def insert(self,newVal):
-        self.insert_helper(self.root, newVal)
+        self.insertHelper(self.root, newVal)
+
+    '''
+    @function insert_helper
+        helper function to insert a new node into the binary search tree
+        free client of hassle to pass in root node
+        called from insert function  
+    '''
+    @staticmethod
+    def insertHelper(self, currentNode, newVal):
+        #currentNode can be thought of as the 'root' at each recursive call
+        if (newVal <= currentNode.value):
+            if (currentNode.left):
+                self.insertHelper(currentNode.left, newVal)
+                #if the left node is defined, then compare newVal to that left node
+                #call recursively where self.left becomes the "root" or currentNode
+            else:
+                #if no left node is defined, then the left node itself
+                #becomes the Node with newVal given
+                currentNode.left = Node(newVal)
+        else:
+            #repeat same process for values greater than the root,
+            #to be inserted to the right of the tree
+            if currentNode.right:
+                self.insertHelper(currentNode.right,newVal)
+            else:
+                currentNode.right = Node(newVal)
 
     '''
     @param $value
@@ -26,48 +53,28 @@ class BinarySearchTree:
         returns False is $value is not found in the binary search tree
     '''
     def search(self,value):
-        self.search_helper()
+        return self.searchHelper(self.root,value)
 
     '''
     @function insert_helper
-        helper function to insert a new node into the binary search tree
+        helper function to search for a given node in the binary search tree
         free client of hassle to pass in root node
-        called from insert function
-        
+        called from search function
     '''
-    @staticmethod
-    def insert_helper(self, root, newVal):
-        if (newVal <= root):
-            if (self.left):
-                self.insert_helper(self.left, newVal)
-                #if the left node is defined, then compare newVal to that left node
-                #call recursively where self.left becomes the "root"
-            else:
-                #if no left node is defined, then the left node itself
-                #becomes the Node with newVal given
-                self.left = Node(newVal)
-        else:
-            #repeat same process for values greater than the root,
-            #to be inserted to the right of the tree
-            if self.right:
-                self.insert_helper(self.right,newVal)
-            else:
-                self.right = Node(newVal)
-
-
     @staticmethod 
-    def search_helper(self, root, value):
+    def searchHelper(self, currentNode, value):
+        root = currentNode.value
         if(value == root):
             return True
 
         elif(value < root):
-            #if value is less than root, then compare to the left node
-            if (self.left):
+            #if value is less than root (value of currentNode), then compare to the left node
+            if (currentNode.left):
 
                 #call search_helper() recursively 
                 #self.left becomes the 'root' at each recursive call
 
-                return search_helper(self.root,value)
+                return self.searchHelper(currentNode.left,value)
 
             else:
                 #if the left node is of type None, i.e not assigned yet
@@ -76,8 +83,41 @@ class BinarySearchTree:
                 return False
         else:
             #repeat the same for the right side of the search tree
-            if self.right:
-                return search_helper(self.root,value)
+            if currentNode.right:
+                return self.searchHelper(currentNode.right,value)
             else:
                 return False
+
+    '''
+    @param root
+        type: Node
+        (required) - The root/ top level Node of the BST to validate
+    '''
+    def isValidBST(self, root):
+        return self.validBST(root,-sys.maxint-1,sys.maxint)
+
+    '''
+    helper function for validating a BST
+    '''
+    @staticmethod
+    def validBST(self, currentNode, _min, _max):
+
+        #currentNode can be thought of as the root node at 
+        #each recursive call
+
+        if (currentNode == None):
+            return True
+        if (currentNode.val < _min or currentNode.val > _max):
+            return False
+
+        #our upper bound max, will be the value of the node we just checked minus 1 when checking the left of the current node
+        #the lower bound min, will be the value og the node we just checked plus 1 when checking the right of the current node
+
+        return self.validBST(currentNode.left, _min, currentNode.val - 1) and self.validBST(currentNode.right, currentNode.val + 1, _max)
+
+               
+    
+    
+
+
 
