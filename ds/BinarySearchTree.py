@@ -23,8 +23,7 @@ class BinarySearchTree:
         free client of hassle to pass in root node
         called from insert function  
     '''
-    @staticmethod
-    def insertHelper(self, currentNode, newVal):
+    def __insertHelper(self, currentNode, newVal):
         #currentNode can be thought of as the 'root' at each recursive call
         if (newVal <= currentNode.value):
             if (currentNode.left):
@@ -70,8 +69,7 @@ class BinarySearchTree:
         free client of hassle to pass in root node
         called from search function
     '''
-    @staticmethod 
-    def searchHelper(self, currentNode, value):
+    def __searchHelper(self, currentNode, value):
         root = currentNode.value
         if(value == root):
             return True
@@ -108,8 +106,7 @@ class BinarySearchTree:
     '''
     helper function for validating a BST
     '''
-    @staticmethod
-    def validBST(self, currentNode, _min, _max):
+    def __validBST(self, currentNode, _min, _max):
 
         #currentNode can be thought of as the root node at 
         #each recursive call
@@ -131,8 +128,7 @@ class BinarySearchTree:
     '''
     helper function to print out nodes in BST, in a pre order manner 
     '''
-    @staticmethod
-    def printPreOrderHelper(self,node):
+    def __printPreOrderHelper(self,node):
         if node:
             print(node.value)
             self.printPreOrder(node.left)
