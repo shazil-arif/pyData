@@ -124,12 +124,15 @@ class BinarySearchTree:
 
         return self.validBST(currentNode.left, _min, currentNode.val - 1) and self.validBST(currentNode.right, currentNode.val + 1, _max)
 
+    
+    def printPreOrder(self):
+        self.printPreOrderHelper()
+
     '''
-    @param $node
-        type : node
-        (required) 
+    helper function to print out nodes in BST, in a pre order manner 
     '''
-    def printPreOrder(self,node):
+    @staticmethod
+    def printPreOrderHelper(self,node):
         if node:
             print(node.value)
             self.printPreOrder(node.left)
