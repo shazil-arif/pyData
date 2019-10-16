@@ -56,6 +56,15 @@ class BinarySearchTree:
         return self.searchHelper(self.root,value)
 
     '''
+    @param $value
+        type: any (generally, the the type is consistent across the BST but is not required to be)
+        (required) - the value to delete from the BST
+    '''
+    def delete(self,value):
+        pass
+
+
+    '''
     @function insert_helper
         helper function to search for a given node in the binary search tree
         free client of hassle to pass in root node
@@ -115,9 +124,13 @@ class BinarySearchTree:
 
         return self.validBST(currentNode.left, _min, currentNode.val - 1) and self.validBST(currentNode.right, currentNode.val + 1, _max)
 
-               
-    
-    
-
-
-
+    '''
+    @param $node
+        type : node
+        (required) 
+    '''
+    def printPreOrder(self,node):
+        if node:
+            print(node.value)
+            self.printPreOrder(node.left)
+            self.printPreOrder(node.right)
