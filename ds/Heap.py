@@ -93,9 +93,7 @@ class Heap:
                 self.__swap(parentIndex,smallerChildIndex)
             
             parentIndex = smallerChildIndex
-        
-        
-
+             
     '''
     How to verify if a value at a given index has a parent?
 
@@ -111,9 +109,9 @@ class Heap:
 
     def getParentValue(self, childIndex): return self.items[self.getParentIndex(childIndex)]
         
-    def getLeftChildValue(self,childIndex): return self.items[self.getLeftChildIndex(parentIndex)]
+    def getLeftChildValue(self,parentIndex): return self.items[self.getLeftChildIndex(parentIndex)]
 
-    def getRightChildValue(self,childIndex): return self.items[self.getRightChildIndex(parentIndex)]
+    def getRightChildValue(self,parentIndex): return self.items[self.getRightChildIndex(parentIndex)]
 
     def getParentIndex(self,childIndex): return childIndex/2 - 1 #will a odd number/2 be rounded up by .5 or down by .5?
 
@@ -133,7 +131,6 @@ class Heap:
     def print(self): 
         for i in self.items: print(i)
     
-
 
 def main():
     #for testing only    
